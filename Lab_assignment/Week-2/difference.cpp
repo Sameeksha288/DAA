@@ -1,22 +1,19 @@
 #include<iostream>
+#include<cmath>
 using namespace std;
 
-void solve(int arr[], int n)
+void solve(int arr[], int n, int key)
 {
-    int i=0, j=0, k=0;
-    for(i=0; i<n; i++)
+    int cnt = 0;
+    for(int i=0; i<n; i++)
     {
-        for(j=i+1; j<n-1; j++)
+        for(int j=i+1; j<n; j++)
         {
-            for(k=j+1; k<n-2; k++)
-                if(arr[i]+arr[j] == arr[k])
-                {
-                    cout << i+1 << " " << j+1 << " " << k+1 << endl;
-                    return;
-                }
+            if(abs(arr[i] - arr[j]) == key)
+                cnt++;
         }
     }
-    cout << "no sequence found" << endl;
+    cout << cnt << endl;
 }
 
 int main()
@@ -30,6 +27,9 @@ int main()
         int arr[n];
         for(int i=0; i<n; i++)
             cin >> arr[i];
-        solve(arr, n);
+        int key;
+        cin >> key;
+        solve(arr, n, key);
     }
+    return 0;
 }
